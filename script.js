@@ -12,6 +12,7 @@ const calculate = {
 };
 
 let firstValue = 0;
+let firstValueEntered = false;
 let operatorValue = "";
 let awaitingNextValue = false;
 
@@ -44,8 +45,9 @@ function useOperator(operator) {
     return;
   }
   // Assign firstValue if no value
-  if (!firstValue) {
+  if (!firstValueEntered) {
     firstValue = currentValue;
+    firstValueEntered = true;
   } else {
     const calculation = calculate[operatorValue](firstValue, currentValue);
     calculatorDisplay.textContent = calculation;
@@ -59,6 +61,7 @@ function useOperator(operator) {
 // Reset display
 function resetAll() {
   firstValue = 0;
+  firstValueEntered = false;
   operator = "";
   awaitingNextValue = false;
   calculatorDisplay.textContent = "0";
